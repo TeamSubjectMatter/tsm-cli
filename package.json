@@ -1,0 +1,24 @@
+{
+  "name": "tsm-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "tsm": "./index.js"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "clear": "0.0.1",
+    "clui": "^0.3.1",
+    "inquirer": "^3.1.0",
+    "minimist": "^1.2.0",
+    "nodegit": "^0.18.3",
+    "preferences": "^0.2.1"
+  }
+}
