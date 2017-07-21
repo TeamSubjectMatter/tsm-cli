@@ -73,6 +73,8 @@ inquirer.prompt([{
         - ${ chalk.gray('composer install') }
         - ${ chalk.gray('docker-compose up') }
 
+        Please read the setup instructions in the ${ chalk.gray('readme.md') } to migrate this project to Pantheon.
+
         If you get stuck, checkout the documentation:
         https://github.com/TeamSubjectMatter/TSM-Dev-Environment.git
 
