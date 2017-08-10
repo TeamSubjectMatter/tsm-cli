@@ -19,6 +19,7 @@
     "inquirer": "^3.1.0",
     "minimist": "^1.2.0",
     "nodegit": "^0.18.3",
-    "preferences": "^0.2.1"
+    "preferences": "^0.2.1",
+    "rimraf": "^2.6.1"
   }
 }

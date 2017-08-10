@@ -7,6 +7,9 @@ const CLI = require('clui')
 const inquirer = require('inquirer')
 const preferences = require('preferences')
 const Git = require('nodegit')
+const rimraf = require('rimraf')
+
+const repoUrl = "https://github.com/TeamSubjectMatter/TSM-Dev-Environment.git"
 
 clear()
 
@@ -49,8 +52,22 @@ inquirer.prompt([{
     type: 'wp_engine'
   }]
 }]).then(answers => {
+  const newDir = `./${ answers.name.toLowerCase().replace(/ /g, '_') }`
 
-  Git.Clone("https://github.com/TeamSubjectMatter/TSM-Dev-Environment.git", `./${ answers.name.toLowerCase().replace(/ /g, '_') }`)
+  Git.Clone(repoUrl, newDir)
+  .then((repo) => {
+    Git.Remote.create(repo, 'upstream', repoUrl, function(remote) {
+      if (remote) {
+        console.log('remote', remote)
+      }
+
+      Git.Remote.delete(repo, 'origin', function(result) {
+        if (result) {
+          console.log(result)
+        }
+      })
+    })
+  })
   .then(() => {
     fs.writeFile(`./${answers.name}/project.json`, JSON.stringify({
       "project_name": answers.name,
@@ -62,7 +79,7 @@ inquirer.prompt([{
     }), err => {
       if ( err ) throw err;
 
-      clear()
+      // clear()
 
       console.log(`
 
