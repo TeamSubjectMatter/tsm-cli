@@ -51,6 +51,10 @@ inquirer.prompt([{
     name: 'WP Engine',
     type: 'wp_engine'
   }]
+}, {
+    name: 'repo',
+    type: 'input',
+    message: 'Git Repo:'
 }]).then(answers => {
   const newDir = `./${ answers.name.toLowerCase().replace(/ /g, '_') }`
 
@@ -61,12 +65,9 @@ inquirer.prompt([{
         console.log('remote', remote)
       }
 
-      Git.Remote.delete(repo, 'origin', function(result) {
-        if (result) {
-          console.log(result)
-        }
-      })
+      Git.Remote.setUrl(repo, 'origin', answers.repo)
     })
+
   })
   .then(() => {
     fs.writeFile(`./${answers.name}/project.json`, JSON.stringify({
